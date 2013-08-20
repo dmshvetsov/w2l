@@ -26,4 +26,8 @@ W2lProto::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  
+  #facebook app key and secret
+  APP_KEY = '586751381363203'
+  APP_SEC = 'f164c8d1afb51458cb14631b073c8479'
 end
