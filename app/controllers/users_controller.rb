@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   private
   
   def random_bg
-    blacklist = [".", ".."]
+    blacklist = [".", "..",".DS_Store"]
     file_names = Dir.entries("#{Rails.root}/app/assets/images/bg-fullscreen/")
     blacklist.each do |blacklsited|
       file_names.delete(blacklsited)

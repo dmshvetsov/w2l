@@ -1,8 +1,9 @@
 W2lProto::Application.routes.draw do
   
   #omniauth routes:
-  get 'auth/:provider/callback', to: 'sessions#create'
-  get 'auth/failure', to: redirect('/')
+  get 'auth/:provider/callback' => 'sessions#create'
+  get 'auth/failure' => redirect('/')
+  get "signout" => "sessions#destroy", as: "signout"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

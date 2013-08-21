@@ -2,14 +2,78 @@
 <html>
 <head>
   <title>W2lProto</title>
+  <link href='http://fonts.googleapis.com/css?family=Abel|Squada+One|Medula+One' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= stylesheet_link_tag params[:controller] %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="grid">
+    <header class="grid__item one-half">
+      <div id="site-menu" class="wrapper-dropdown menu-site" tabindex="1">
+        <%= image_tag 'logohantagace.png', alt: 'hantagace' %>
+        <ul class="dropdown">
+          <li><a href="#">Page 1</a></li>
+          <li><a href="#">Page 2</a></li>
+          <li><a href="#">Page 3</a></li>
+        </ul>
+      </div>
+    </header>
+    <nav class="grid__item one-half">
+      <% if current_user %>
+        <div id="user-menu" class="wrapper-dropdown menu-user" tabindex="1">
+          <%= image_tag current_user.image, alt: 'user-image', id: 'user-image' %>
+          <ul class="dropdown">
+            <li><%= link_to "sing out", signout_path %></li>
+          </ul>
+        </div>
+      <% else %>
+        <div id="user-subblock">
+          <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+        </div>
+        <%= image_tag "logofacebook.png", alt: 'Facebook logo', id: "logo-facebook" %>
+      <% end %>
+    </nav>
+    <%= yield %>
+  </div>
+  
+  <!-- javascript -->
+  
+	<script type="text/javascript">
 
-<%= yield %>
+		function DropDown(el) {
+			this.dd = el;
+			this.initEvents();
+		}
+		DropDown.prototype = {
+			initEvents : function() {
+				var obj = this;
+				obj.dd.on('click', function(event){
+					$(this).toggleClass('active');
+					event.stopPropagation();
+				});	
+			}
+		}
 
+		$(function() {
+			var user-menu = new DropDown( $('#user-menu') );
+			$(document).click(function() {
+				// all dropdowns
+				$('.wrapper-dropdown').removeClass('active');
+			});
+      
+		});
+
+		$(function() {
+			var user-menu = new DropDown( $('#site-menu') );
+			$(document).click(function() {
+				// all dropdowns
+				$('.wrapper-dropdown').removeClass('active');
+			});
+      
+		});
+
+	</script>
 </body>
 </html>
