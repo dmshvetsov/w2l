@@ -3,6 +3,14 @@ class UsersController < ApplicationController
     @background = random_bg
   end
   
+  def show
+    if current_user
+      @user = User.find_by_id(params[:id])
+    else
+      redirect_to root_url
+    end
+  end
+  
   private
   
   def random_bg

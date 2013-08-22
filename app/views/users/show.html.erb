@@ -1,0 +1,16 @@
+<div class="grid__item one-whole">
+  <div id="user-image-users-show">
+    <%= image_tag "http://graph.facebook.com/#{@user.uid}/picture?width=100&height=100", alt: "user image" %>
+  </div>
+  <div id="user-data-users-show">
+    <div id="user-name-users-show">
+      <h1><%= @user.name %></h1>
+    </div>
+    <div id="user-beloved-tags-users-show">
+      e.g. warm climate
+    </div>
+    <div id="user-hated-tags-users-show">
+      e.g. low standard of living
+    </div>
+  </div>
+</div>

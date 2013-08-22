@@ -1,3 +1,7 @@
+/*------------------------------------*\
+    INDEX ACTION
+\*------------------------------------*/
+
 #bg-fullscreen {
   z-index: -1;
   position: fixed;
@@ -15,4 +19,26 @@
     min-width: 50%;
     min-height: 50%;
   }
+}
+
+/*------------------------------------*\
+    SHOW ACTION
+\*------------------------------------*/
+
+#user-image-users-show, #user-data-users-show {
+  display: inline-block;
+  vertical-align: top;
+}
+#user-image-users-show img {
+  width: 100px;
+  height: 100px;
+  vertical-align: top;
+}
+#user-name-users-show {
+  line-height: 50px;
+  margin-left: 25px;
+}
+#user-beloved-tags-users-show, #user-hated-tags-users-show {
+  vertical-align: top;
+  margin-left: 25px;
 }
