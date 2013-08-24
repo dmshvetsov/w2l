@@ -1,7 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#seed tags
+require 'csv'
+Tag.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!('tags')
+CSV.foreach('db/data/tags.csv', headers: true) do |row_item|
+  tag = Tag.create! row_item.to_hash
+end
+
