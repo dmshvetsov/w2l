@@ -9,6 +9,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="bg-fullscreen">
+    <%= image_tag random_bg %>
+  </div>
   <div class="grid">
     <div class="margin-normal">
       <header class="grid__item one-half">
@@ -16,7 +19,7 @@
           <%= image_tag 'logohantagace.png', alt: 'hantagace' %>
           <ul class="dropdown">
             <li><%= link_to "home", root_path %></li>
-            <li><a href="#">page 2</a></li>
+            <li><%= link_to "tags", tags_path %></li>
             <li><a href="#">page 3</a></li>
           </ul>
         </div>

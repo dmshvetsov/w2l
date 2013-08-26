@@ -8,6 +8,9 @@ W2lProto::Application.routes.draw do
   #users controller routes:
   get "/users/:id" => "users#show", as: "user"
   
+  #tags controller routes:
+  get "tags/index", as: "tags"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

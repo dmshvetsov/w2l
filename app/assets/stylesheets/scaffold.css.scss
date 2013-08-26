@@ -1,8 +1,4 @@
-/*------------------------------------*\
-    VARIABLES
-\*------------------------------------*/
-
-$color-site-dark: #051E28;
+@import "variables";
 
 /*------------------------------------*\
     BASICS
@@ -46,7 +42,6 @@ header, footer, nav {
   height: 50px;
 }
 
-
 /*------------------------------------*\
     FONTS
 \*------------------------------------*/
@@ -72,6 +67,10 @@ h1, h2, h3, h4, h5, h6, {
 h1 {
   font-size: 50px;
 }
+ul {
+  margin: 0;
+  list-style: none;
+}
 button {
   font-family: 'Squada One', helvetica;
 }
@@ -87,12 +86,51 @@ button {
 .margin-double {
   margin-bottom: 50px;
 }
+.chart-top-item {
+  border-bottom: 1px solid $color-site-dark;
+  line-height: 75px;
+  > h1 {
+    font-family: "Abel";
+    font-size: 25px;
+    text-transform: uppercase;
+  }
+}
+.chart-item {
+  border-bottom: 1px solid $color-site-dark;
+  line-height: 25px;
+  > h1 {
+    font-family: "Abel";
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+}
 
 /*------------------------------------*\
     HEADER, NAV, FOOTER
 \*------------------------------------*/
 
+/*------------------------------------*\
+    FULLSCREEN BACKGROUND
+\*------------------------------------*/
 
+#bg-fullscreen {
+  z-index: -1;
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%;
+  }
+}
 
 /*------------------------------------*\
     NAVIGATION

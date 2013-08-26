@@ -1,0 +1,29 @@
+<div class="grid--center margin-double">
+  <div class="grid__item two-thirds">
+    <div class="margin-normal">
+      <div class="grid">
+        <div class="grid__item one-third grid--center">
+          <div class="stat-label">total number of of tags</div>
+          <div class="stat-number">140</div>
+        </div>        
+        <div class="grid__item one-third grid--center">
+          <div class="stat-label">total love count</div>
+          <div class="stat-number">0</div>
+        </div>        
+        <div class="grid__item one-third grid--center">
+          <div class="stat-label">total hate count</div>
+          <div class="stat-number">0</div>
+        </div>
+      </div>
+    </div>
+    <ul>
+    <% @tags.each_with_index do |tag, index| %>
+      <% if index < 10 %>
+        <%= render "item", { chart_class_item: "chart-top-item", index: index, tag: tag } %>
+      <% else %>
+        <%= render "item", { chart_class_item: "chart-item", index: index, tag: tag } %>
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+</div>
