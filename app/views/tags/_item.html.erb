@@ -3,7 +3,7 @@
     <%= index + 1 %>.
   </div>
   <div class="grid__item chart-item-love-hate one-twelfth">
-    <%= link_to tag.likes.count, like_tag_url(liked_tag_id: tag.id, user_who_liked: current_user.id) %> / 0
+    <%= link_to tag.likes.count, like_tag_url(liked_tag_id: tag.id, user_who_liked: current_user.id) %> / <%= link_to tag.dislikes.count, dislike_tag_url(disliked_tag_id: tag.id, user_who_disliked: current_user.id) %>
   </div>
   <h1 class="grid__item chart-item-name five-twelfths">
     <%= tag.name %>
