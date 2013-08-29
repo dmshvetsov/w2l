@@ -10,6 +10,7 @@ W2lProto::Application.routes.draw do
   
   #tags controller routes:
   get "tags/index", as: "tags"
+  get "like/:liked_tag_id/:user_who_liked" => "tags#like", as: "like_tag"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
