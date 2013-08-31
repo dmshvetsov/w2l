@@ -41,6 +41,19 @@ button {
 header, footer, nav {
   height: 50px;
 }
+form {
+  display: inline;
+}
+input.submit-like-dislike-icon {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+}
 
 /*------------------------------------*\
     FONTS

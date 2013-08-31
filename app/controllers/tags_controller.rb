@@ -3,15 +3,52 @@ class TagsController < ApplicationController
     @tags = Tag.first(100)
     @total_likes = Like.all.count
     @total_dislikes = Dislike.all.count
+    @like = Like.new
+    @dislike = Dislike.new
   end
   
   def like
-    Like.create(tag_id: params[:liked_tag_id], user_id: params[:user_who_liked])
+    @like = Like.new(like_params)
+    begin
+      if @like.save
+        redirect_to :back
+      else
+        render '/public/500', layout: false
+      end
+    rescue ActiveRecord::RecordNotUnique
+      render '/public/500', layout: false
+    end
+  end
+  
+  def unlike
+    @like = Like.destroy(params[:id])
     redirect_to :back
   end
   
   def dislike
-    Dislike.create(tag_id: params[:disliked_tag_id], user_id: params[:user_who_disliked])
+    @dislike = Dislike.new(dislike_params)
+    begin
+      if @dislike.save
+        redirect_to :back
+      else
+        render '/public/500', layout: false
+      end
+    rescue ActiveRecord::RecordNotUnique
+      render '/public/500', layout: false
+    end
+  end
+  
+  def undislike
+    @dislike = Dislike.destroy(params[:id])
     redirect_to :back
+  end
+  
+  private
+  
+  def like_params
+    params.require(:like).permit(:tag_id, :user_id)
+  end
+  def dislike_params
+    params.require(:dislike).permit(:tag_id, :user_id)
   end
 end

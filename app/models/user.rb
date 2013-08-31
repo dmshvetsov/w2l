@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   has_many :likes
-  has_many :tags, through: :like
+  has_many :tags, through: :likes
   has_many :dislikes
-  has_many :tags, through: :dislike
+  has_many :tags, through: :dislikes
   
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|

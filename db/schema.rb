@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130829135224) do
+ActiveRecord::Schema.define(version: 20130830015837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20130829135224) do
     t.datetime "updated_at"
   end
 
+  add_index "dislikes", ["tag_id", "user_id"], name: "user_dislike_tag_index", unique: true, using: :btree
   add_index "dislikes", ["tag_id"], name: "index_dislikes_on_tag_id", using: :btree
   add_index "dislikes", ["user_id"], name: "index_dislikes_on_user_id", using: :btree
 
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 20130829135224) do
     t.datetime "updated_at"
   end
 
+  add_index "likes", ["tag_id", "user_id"], name: "user_like_tag_index", unique: true, using: :btree
   add_index "likes", ["tag_id"], name: "index_likes_on_tag_id", using: :btree
   add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 

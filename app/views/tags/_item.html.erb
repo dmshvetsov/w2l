@@ -2,13 +2,33 @@
   <div class="grid__item one-twelfth">
     <%= index + 1 %>.
   </div>
-  <div class="grid__item chart-item-love-hate one-twelfth">
-    <%= link_to tag.likes.count, like_tag_url(liked_tag_id: tag.id, user_who_liked: current_user.id) %> / <%= link_to tag.dislikes.count, dislike_tag_url(disliked_tag_id: tag.id, user_who_disliked: current_user.id) %>
-  </div>
-  <h1 class="grid__item chart-item-name five-twelfths">
+  <h1 class="grid__item chart-item-name four-twelfths">
     <%= tag.name %>
   </h1>
+  <div class="grid__item one-twelfth">
+    <% if current_user %>
+      <% if tag.likes.find_by(user_id: current_user.id) %>
+        <%= link_to "NLL", tag.likes.find_by(user_id: current_user.id), method: :delete %>
+      <% elsif tag.dislikes.find_by(user_id: current_user.id) %>
+        <%= link_to "NLD", tag.dislikes.find_by(user_id: current_user.id), method: :delete %>
+      <% else %>
+        <%= form_for @like do |f| %>
+          <%= f.hidden_field :tag_id, value: tag.id %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.submit "L", class: "submit-like-dislike-icon" %>
+        <% end %> /
+        <%= form_for @dislike do |f| %>
+          <%= f.hidden_field :tag_id, value: tag.id %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.submit "D", class: "submit-like-dislike-icon" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="grid__item chart-item-love-hate one-twelfth">    
+    <%= tag.likes.count %> / <%= tag.dislikes.count %>
+  </div>
   <div class="grid__item chart-item-places five-twelfths">
-    there are no one places with this tag
+    e.g. lichtenstein / saint petersburg / Cottonshopeburnfoot
   </div>
 </li>
