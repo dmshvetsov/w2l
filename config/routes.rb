@@ -14,7 +14,9 @@ W2lProto::Application.routes.draw do
   post "disliketag" => "tags#dislike", as: "dislikes"
   delete "like/:id" => "tags#unlike", as: "like"
   delete "dislike/:id" => "tags#undislike", as: "dislike"
-
+  
+  #localities controller routes""
+  post "checkin" => "users#check_in", as: "check_ins"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

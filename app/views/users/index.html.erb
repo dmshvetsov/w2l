@@ -1,0 +1,48 @@
+<div class="grid__item grid--center vertical-center one-whole">
+  <div class="grid">
+    <div class="grid__item one-whole">
+      <span id="locality-name" class="titleize"></span>
+      <% if current_user %>
+        <%= form_for @check_in, name: "formcheckin" do |f| %>
+          <%= f.hidden_field :locality_name, id: "form-field-locality-name", value: "" %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.submit "check in", class: "submit-titleize-button" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+//get latitude & longitude
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+          var latitude = position.coords.latitude;
+          var longitude = position.coords.longitude;
+          var coord = new google.maps.LatLng(latitude,longitude);
+          
+          geocoder = new google.maps.Geocoder();
+          
+          geocoder.geocode({'latLng': coord}, function(results, status) {
+            for (var i = 0; i < results[0].address_components.length; i++) {
+                for (var j = 0; j < results[0].address_components[i].types.length; j++) {
+                    if(results[0].address_components[i].types[j] == 'locality') {
+                        var city_name = results[0].address_components[i].long_name;
+                        document.getElementById('locality-name').innerHTML= city_name;
+                        document.getElementById('form-field-locality-name').value = city_name;
+                    }
+                    else if (!city_name) {
+                        var city_name = "Undefined";
+                        document.getElementById('locality-name').innerHTML= city_name;
+                        //document.getElementById('new_check_in') must hide it!
+                    }
+                }
+            }
+          });
+      });
+  } else {
+      alert("Geolocation API is not supported in your browser.");
+  }
+</script>

@@ -44,16 +44,6 @@ header, footer, nav {
 form {
   display: inline;
 }
-input.submit-like-dislike-icon {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  border: 0;
-  background: none;
-  cursor: pointer;
-  font: inherit;
-  text-decoration: underline;
-}
 
 /*------------------------------------*\
     FONTS
@@ -84,9 +74,6 @@ ul {
   margin: 0;
   list-style: none;
 }
-button {
-  font-family: 'Squada One', helvetica;
-}
 
 /*------------------------------------*\
     BRICKS
@@ -98,6 +85,11 @@ button {
 
 .margin-double {
   margin-bottom: 50px;
+}
+.vertical-center {
+  position: absolute;
+  top: 50%;
+  left: 0;
 }
 .chart-top-item {
   border-bottom: 1px solid $color-site-dark;
@@ -116,6 +108,9 @@ button {
     font-size: 16px;
     text-transform: uppercase;
   }
+}
+.titleize {
+  font-size: 25px;
 }
 
 /*------------------------------------*\
@@ -167,7 +162,6 @@ nav {
   margin: 10px 0 11px 0;
 }
 
-
 /*------------------------------------*\
     DROP DOWN MENU (NAVIGATION)
 \*------------------------------------*/
@@ -178,11 +172,7 @@ nav {
   padding: 0;
   cursor: pointer;
   outline: none;
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+  @include transition-normal;
 }
 
 .wrapper-dropdown:after {
@@ -200,11 +190,7 @@ nav {
   background-color: rgba(255,255,255,0.2);
   list-style: none;
   text-align: center;
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+  @include transition-normal;
   max-height: 0;
   overflow: hidden;
 }
@@ -221,22 +207,46 @@ nav {
 
 .wrapper-dropdown .dropdown li:hover {
   background: rgba(255,255,255,0.9);
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+  @include transition-normal;
   > a {
     color: #E6233C;
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -ms-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
+    @include transition-normal;
   }
 }
 
 .wrapper-dropdown:focus .dropdown {
     border-bottom: 1px solid rgba(0,0,0,0.2);
     max-height: 400px;
+}
+
+/*------------------------------------*\
+    LINKS, INPUT-SUBMIT & BUTTONS
+\*------------------------------------*/
+
+.submit-like-dislike-icon {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+}
+.submit-titleize-button {
+  font-family: 'Squada One', helvetica;
+	color: $color-site-white;
+	font-size: 25px;
+	line-height: 50px;
+	text-transform: uppercase;
+	cursor: pointer;
+	background: $color-site-colorful;
+	padding: 0px 25px;
+  margin: 0px 25px;
+  border: 0;
+  @include transition-fast;
+  &:hover {
+    background: none;
+    color: $color-site-colorful;
+  }
 }

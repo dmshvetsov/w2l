@@ -6,3 +6,21 @@ $color-site-dark: #051E28;
 $color-site-dark-alt: lighten(#051E28, 10%);
 $color-site-grey: #F0F0F0;
 $color-site-colorful: #E6233C;
+$color-site-white: #FFF;
+
+/*------------------------------------*\
+    MIXINS
+\*------------------------------------*/
+
+@mixin transition-fast {
+  -webkit-transition: color 0.1s ease-in;
+  -webkit-transition: background 0.1s ease-in;
+}
+
+@mixin transition-normal {
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}

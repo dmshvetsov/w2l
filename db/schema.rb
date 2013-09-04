@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130830015837) do
+ActiveRecord::Schema.define(version: 20130902123705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "check_ins", force: true do |t|
+    t.integer  "locality_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "check_ins", ["locality_id"], name: "index_check_ins_on_locality_id", using: :btree
+  add_index "check_ins", ["user_id"], name: "index_check_ins_on_user_id", using: :btree
 
   create_table "dislikes", force: true do |t|
     t.integer  "tag_id"
@@ -37,6 +47,12 @@ ActiveRecord::Schema.define(version: 20130830015837) do
   add_index "likes", ["tag_id", "user_id"], name: "user_like_tag_index", unique: true, using: :btree
   add_index "likes", ["tag_id"], name: "index_likes_on_tag_id", using: :btree
   add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
+
+  create_table "localities", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "tags", force: true do |t|
     t.string   "name"
