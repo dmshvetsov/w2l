@@ -14,7 +14,15 @@ $color-site-white: #FFF;
 
 @mixin transition-fast {
   -webkit-transition: color 0.1s ease-in;
-  -webkit-transition: background 0.1s ease-in;
+  -moz-transition: all 0.1s ease-in;
+  -ms-transition: all 0.1s ease-in;
+  -o-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
+  -webkit-transition: background 0.1s ease-out;
+  -moz-transition: all 0.1s ease-out;
+  -ms-transition: all 0.1s ease-out;
+  -o-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
 }
 
 @mixin transition-normal {

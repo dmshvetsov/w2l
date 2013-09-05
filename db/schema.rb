@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130902123705) do
+ActiveRecord::Schema.define(version: 20130905022555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20130902123705) do
     t.datetime "updated_at"
   end
 
+  add_index "check_ins", ["locality_id", "user_id"], name: "user_locality_tag_index", unique: true, using: :btree
   add_index "check_ins", ["locality_id"], name: "index_check_ins_on_locality_id", using: :btree
   add_index "check_ins", ["user_id"], name: "index_check_ins_on_user_id", using: :btree
 
