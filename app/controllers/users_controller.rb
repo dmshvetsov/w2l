@@ -21,6 +21,14 @@ class UsersController < ApplicationController
     end
   end
   
+  def current_user_check_ins
+    # get name (locality) of all current user check ins
+    @current_user_check_ins = Locality.joins(:check_ins).where(check_ins: { user_id: current_user.id }).pluck(:name)
+    respond_to do |format|
+      format.json { render :json => @current_user_check_ins }
+    end
+  end
+  
   private
   
   def check_in_params

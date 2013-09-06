@@ -8,6 +8,8 @@
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.submit "check in", class: "submit-titleize-button margin-left-normal" %>
       <% end %>
+      <!-- false <a> tag for debuging -->
+      <a href="#" id="hang_a_tag" class="submit-titleize-button margin-left-normal">Hang a tag</a>
     </div>
   </div>
 </div>
@@ -15,40 +17,62 @@
 
 <% if current_user %>
 <script type="text/javascript">
-//get latitude & longitude
+  document.getElementById('hang_a_tag').style.display = "none";
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
+          //get latitude & longitude
           var latitude = position.coords.latitude;
           var longitude = position.coords.longitude;
-          console.log(latitude);
-          console.log(longitude);
           var coord = new google.maps.LatLng(latitude,longitude);
           
           geocoder = new google.maps.Geocoder();
           
           geocoder.geocode({'latLng': coord}, function(results, status) {
+            // check status of query
             switch (status) {
             case "OK":
+              // iteration of the json response to the request
               for (var i = 0; i < results[0].address_components.length; i++) {
                   for (var j = 0; j < results[0].address_components[i].types.length; j++) {
                       if(results[0].address_components[i].types[j] == 'locality') {
                           var city_name = results[0].address_components[i].long_name;
+                          
+                          //set geoceded locality value to html tag
                           document.getElementById('locality-name').innerHTML= city_name;
+                          
+                          //set geocoded locality value to check in form
                           document.getElementById('form-field-locality-name').value = city_name;
                       }
                   }
               }
               break;
             case "ZERO_RESULTS":
+              // if no one locality in the response on the query
               document.getElementById('locality-name').innerHTML= "Undefined locality";
               document.getElementById('new_check_in').remove();
               break;
             }
-          //end of geocoder
+            
+            //get current_user check ins from app db
+            $.get("/currentuser/checkins").done(function(data) {
+              
+              //change button if user allready make check in in his locality
+              for (i = 0; i < data.length; i++) {
+                if (data[i] == city_name) {
+                 document.getElementById('locality-name').innerHTML= "Check-in " + city_name;
+                 document.getElementById('new_check_in').remove();
+                 document.getElementById('hang_a_tag').style.display = "inline-block";
+                }
+              }
+              
+            });
+            
+          //end of geocoding
           });
       });
   } else {
-      alert("Geolocation API is not supported in your browser.");
+    // if gecode fails  
+    document.getElementById('locality-name').innerHTML= "Geolocation API is not supported in your browser.";
   }
 </script>
 <% end %>

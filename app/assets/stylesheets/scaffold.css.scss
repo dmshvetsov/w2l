@@ -87,7 +87,7 @@ ul {
   margin-bottom: 50px;
 }
 .margin-left-normal {
-    margin: 0px 25px;
+    margin-left: 25px;
 }
 .vertical-center {
   position: absolute;
@@ -236,7 +236,7 @@ nav {
   font: inherit;
   text-decoration: underline;
 }
-.submit-titleize-button {
+.submit-titleize-button, a.submit-titleize-button, {
   font-family: 'Squada One', helvetica;
 	color: $color-site-white;
 	font-size: 25px;
@@ -244,6 +244,7 @@ nav {
   height: 50px;
   width: 150px;
 	text-transform: uppercase;
+  text-decoration: none;
 	cursor: pointer;
 	background: $color-site-colorful;
   border: 0;
