@@ -14,6 +14,7 @@ p {
  
 }
 a {
+  text-decoration: none;
   &:link {
     color: $color-site-dark;
   }
@@ -21,7 +22,7 @@ a {
     color: $color-site-dark;
   }
   &:hover {
-    color: $color-site-dark;
+    color: $color-site-colorful;
   }
   &:active {
     color: $color-site-dark;
@@ -94,6 +95,17 @@ ul {
   top: 50%;
   left: 0;
 }
+.text-align-center {
+  text-align: center;
+}
+.titleize {
+  font-size: 25px;
+}
+
+/*------------------------------------*\
+    CHARTS
+\*------------------------------------*/
+
 .chart-top-item {
   border-bottom: 1px solid $color-site-dark;
   line-height: 75px;
@@ -112,13 +124,20 @@ ul {
     text-transform: uppercase;
   }
 }
-.titleize {
-  font-size: 25px;
+.stat-label {
+  line-height: 16px;
 }
-
-/*------------------------------------*\
-    HEADER, NAV, FOOTER
-\*------------------------------------*/
+.stat-number {
+  height: 100px;
+  font-size: 100px;
+  line-height: 100px;
+  font-weight: bold;
+  font-family: "Squada one";
+  color: $color-site-colorful;
+}
+.chart-item-last-column, {
+  text-align: right;
+}
 
 /*------------------------------------*\
     FULLSCREEN BACKGROUND

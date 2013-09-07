@@ -1,0 +1,14 @@
+<li class="grid <%= chart_class_item %>">
+  <div class="grid__item one-twelfth">
+    <%= index + 1 %>.
+  </div>
+  <h1 class="grid__item chart-item-name five-twelfths">
+    <%= link_to locality.name, locality_path(locality.name) %>
+  </h1>
+  <div class="grid__item one-twelfth">
+    <%= locality.check_ins.count %> CI
+  </div>
+  <div class="grid__item chart-item-last-column five-twelfths">
+    e.g. sea air / pollution / high crime / pro football team
+  </div>
+</li>

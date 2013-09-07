@@ -1,0 +1,29 @@
+<div class="grid--center margin-double">
+  <div class="grid__item three-quarters">
+    <div class="margin-normal">
+      <div class="grid">
+        <div class="grid__item one-third grid--center">
+          <div class="stat-label">total number of localities</div>
+          <div class="stat-number"><%= @total_localities %></div>
+        </div>        
+        <div class="grid__item one-third grid--center">
+          <div class="stat-label">total users</div>
+          <div class="stat-number"><%= @total_users %></div>
+        </div>        
+        <div class="grid__item one-third grid--center">
+          <div class="stat-label">total hanged tags</div>
+          <div class="stat-number">13</div>
+        </div>
+      </div>
+    </div>
+    <ul>
+    <% @localities.each_with_index do |locality, index| %>
+      <% if index < 10 %>
+        <%= render "item", { chart_class_item: "chart-top-item", index: index, locality: locality } %>
+      <% else %>
+        <%= render "item", { chart_class_item: "chart-item", index: index, locality: locality } %>
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+</div>

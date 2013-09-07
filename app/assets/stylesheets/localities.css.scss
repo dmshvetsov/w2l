@@ -1,0 +1,21 @@
+@import "variables";
+
+/*------------------------------------*\
+    SHOW ACTION
+\*------------------------------------*/
+
+#locality-name-locality-show {
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+}
+#locality-chart-position-locality-show, #locality-tag-list-locality-show {
+  font-family: 'Squada One', helvetica;
+  height:50px;
+  line-height: 50px;
+  text-align: center;
+  span {
+    color: $color-site-colorful;
+    font-size: 50px;
+  }
+}

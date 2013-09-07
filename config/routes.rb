@@ -1,5 +1,7 @@
 W2lProto::Application.routes.draw do
   
+  get "localities/index"
+  get "localities/show"
   #omniauth and session controller routes:
   get 'auth/:provider/callback' => 'sessions#create'
   get 'auth/failure' => redirect('/')
@@ -16,6 +18,10 @@ W2lProto::Application.routes.draw do
   post "disliketag" => "tags#dislike", as: "dislikes"
   delete "like/:id" => "tags#unlike", as: "like"
   delete "dislike/:id" => "tags#undislike", as: "dislike"
+  
+  #locality controller routes:
+  get "localities/index", as: "localities"
+  get "locality/:name" => "localities#show", as: "locality"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

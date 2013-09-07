@@ -8,8 +8,7 @@
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.submit "check in", class: "submit-titleize-button margin-left-normal" %>
       <% end %>
-      <!-- false <a> tag for debuging -->
-      <a href="#" id="hang_a_tag" class="submit-titleize-button margin-left-normal">Hang a tag</a>
+      <%= link_to "Explore it", "path of locality's link set by JS below", id: "explore_it", class: "submit-titleize-button margin-left-normal" %>
     </div>
   </div>
 </div>
@@ -17,7 +16,7 @@
 
 <% if current_user %>
 <script type="text/javascript">
-  document.getElementById('hang_a_tag').style.display = "none";
+  document.getElementById('explore_it').style.display = "none";
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
           //get latitude & longitude
@@ -38,7 +37,7 @@
                           var city_name = results[0].address_components[i].long_name;
                           
                           //set geoceded locality value to html tag
-                          document.getElementById('locality-name').innerHTML= city_name;
+                          document.getElementById('locality-name').innerHTML= "Now you're in " + city_name;
                           
                           //set geocoded locality value to check in form
                           document.getElementById('form-field-locality-name').value = city_name;
@@ -61,7 +60,10 @@
                 if (data[i] == city_name) {
                  document.getElementById('locality-name').innerHTML= "Check-in " + city_name;
                  document.getElementById('new_check_in').remove();
-                 document.getElementById('hang_a_tag').style.display = "inline-block";
+                 document.getElementById('explore_it').style.display = "inline-block";
+                 
+                 //set geocoded locality value to link_to "explore it"
+                 document.getElementById('explore_it').href = "locality/" + city_name;
                 }
               }
               
