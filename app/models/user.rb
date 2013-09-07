@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :dislikes
   has_many :tags, through: :dislikes
   has_many :check_ins
+  has_many :localities, through: :check_ins
   
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|

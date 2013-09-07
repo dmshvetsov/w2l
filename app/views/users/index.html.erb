@@ -2,7 +2,7 @@
 <div class="grid__item grid--center vertical-center one-whole">
   <div class="grid">
     <div class="grid__item one-whole">
-      <span id="locality-name" class="titleize"></span>
+      <span id="locality-name" class="font-large"></span>
       <%= form_for @check_in, name: "formcheckin" do |f| %>
         <%= f.hidden_field :locality_name, id: "form-field-locality-name", value: "" %>
         <%= f.hidden_field :user_id, value: current_user.id %>

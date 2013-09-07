@@ -1,4 +1,4 @@
-<div class="grid__item one-whole">
+<div class="grid__item one-whole margin-normal">
   <div id="user-image-users-show">
     <%= image_tag "http://graph.facebook.com/#{@user.uid}/picture?width=100&height=100", alt: "user image" %>
   </div>
@@ -12,5 +12,33 @@
     <div id="user-hated-tags-users-show">
       e.g. low standard of living
     </div>
+  </div>
+</div>
+<div class="grid--center">
+  <div class="grid__item three-quarters">
+    <p>Check-ins</p>
+    <% if @user.check_ins.any? %>
+    <ul class="grid">
+      <% @user.check_ins.each do |check_in| %>
+      <li class="user-checkin-item margin-normal">
+        <div class="grid__item three-twelfths user-checkin-item-locality-name-users-show">
+          <span class="font-large uppercase"><%= check_in.locality.name %></span>
+          <div>check-in <%= l check_in.created_at %></div>
+        </div>
+        <div class="grid__item seven-twelfths user-checkin-item-locality-tags-users-show">
+          <div>you did not have a single tag hanged for this locality</div>
+          <div><span class="submit-button">add tag</span></div>
+        </div>
+        <div class="grid__item two-twelfths user-checkin-item-locality-info-users-show">
+          check-in <%= l check_in.created_at %>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+    <% else %>
+    <div>
+      No one check-in yet
+    </div>
+    <% end %>
   </div>
 </div>

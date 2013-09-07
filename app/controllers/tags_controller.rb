@@ -1,6 +1,7 @@
 class TagsController < ApplicationController
   def index
     @tags = Tag.all.sort_by { |tag| -(tag.likes.count*3 - tag.dislikes.count*2) }.take(100)
+    @total_tags = Tag.all.count
     @total_likes = Like.all.count
     @total_dislikes = Dislike.all.count
     @like = Like.new

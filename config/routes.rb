@@ -1,7 +1,5 @@
 W2lProto::Application.routes.draw do
   
-  get "localities/index"
-  get "localities/show"
   #omniauth and session controller routes:
   get 'auth/:provider/callback' => 'sessions#create'
   get 'auth/failure' => redirect('/')

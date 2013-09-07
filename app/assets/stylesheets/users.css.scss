@@ -1,3 +1,5 @@
+@import "variables";
+
 /*------------------------------------*\
     INDEX ACTION
 \*------------------------------------*/
@@ -22,4 +24,16 @@
 #user-beloved-tags-users-show, #user-hated-tags-users-show {
   vertical-align: top;
   margin-left: 25px;
+}
+li.user-checkin-item {
+  height: 100px;
+}
+.user-checkin-item-locality-name-users-show {
+  
+}
+.user-checkin-item-locality-tags-users-show {
+  
+}
+.user-checkin-item-locality-info-users-show {
+  
 }
