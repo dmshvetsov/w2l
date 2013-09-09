@@ -4,8 +4,10 @@
     BASICS
 \*------------------------------------*/
 
+//layout margin 14px top/bottom 25px left-right
+
 body {
-  
+  margin: 0px 25px;
 }
 html {
   
@@ -67,7 +69,6 @@ body {
   font-weight: 400;
   line-height: 25px;
   color: $color-site-dark;
-  margin: 14px 25px;
 }
 h1, h2, h3, h4, h5, h6, {
   font-family: 'Medula One', garamond;
@@ -179,9 +180,10 @@ ul {
 \*------------------------------------*/
 
 nav {
-  text-align: right;
+
 }
 #user-image {
+  float: right;
   height: 50px;
   width: 50px;
 }
@@ -194,6 +196,18 @@ nav {
   height: 29px;
   width: 29px;
   margin: 10px 0 11px 0;
+}
+ul.menu {
+  display: inline; 
+}
+li.menu-item {
+  display: inline;
+  line-height: 50px;
+  height: 50px;
+  vertical-align: top;
+  text-transform: uppercase;
+  font-size: 25px;
+  margin-left: 25px;
 }
 
 /*------------------------------------*\
