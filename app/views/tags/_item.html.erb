@@ -29,6 +29,12 @@
     <%= tag.likes.count %> / <%= tag.dislikes.count %>
   </div>
   <div class="grid__item chart-item-last-column five-twelfths">
-    e.g. lichtenstein / saint petersburg / Cottonshopeburnfoot
+    <% if tag.localities.any? %>
+      <% chart_sorted_sample(3, tag.localities).each do |locality| %>
+        <span class="margin-right-normal"><%= link_to locality.name, locality_path(locality.name) %></span>
+      <% end %>
+    <% else %>
+      <span class="margin-right-normal">there is no one place with this tag</span>
+    <% end %>
   </div>
 </li>

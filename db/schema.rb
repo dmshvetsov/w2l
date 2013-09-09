@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130905022555) do
+ActiveRecord::Schema.define(version: 20130908232449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(version: 20130905022555) do
   add_index "dislikes", ["tag_id", "user_id"], name: "user_dislike_tag_index", unique: true, using: :btree
   add_index "dislikes", ["tag_id"], name: "index_dislikes_on_tag_id", using: :btree
   add_index "dislikes", ["user_id"], name: "index_dislikes_on_user_id", using: :btree
+
+  create_table "hantagaces", force: true do |t|
+    t.integer  "locality_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hantagaces", ["locality_id", "tag_id"], name: "hang_tag_on_locality_index", unique: true, using: :btree
+  add_index "hantagaces", ["locality_id"], name: "index_hantagaces_on_locality_id", using: :btree
+  add_index "hantagaces", ["tag_id"], name: "index_hantagaces_on_tag_id", using: :btree
 
   create_table "likes", force: true do |t|
     t.integer  "tag_id"

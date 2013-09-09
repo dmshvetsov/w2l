@@ -9,6 +9,12 @@
     <%= locality.check_ins.count %> CI
   </div>
   <div class="grid__item chart-item-last-column five-twelfths">
-    e.g. sea air / pollution / high crime / pro football team
+    <% if locality.tags.any? %>
+      <% chart_sorted_sample(4, locality.tags).each do |tag| %>
+        <span class="margin-right-normal"><%= tag.name %></span>
+      <% end %>
+    <% else %>
+      <span class="margin-right-normal">no one tag was hanged</span>
+    <% end %>
   </div>
 </li>
