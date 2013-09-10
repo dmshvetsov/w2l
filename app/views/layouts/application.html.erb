@@ -35,11 +35,15 @@
   <div class="grid margin-normal">
     <header class="grid__item one-whole">
       <%= image_tag 'logohantagace.png', alt: 'hantagace' %>
-      <%= image_tag current_user.image, alt: 'user-image', id: 'user-image' if current_user %>
+      <% if current_user %>
+        <button class="md-trigger" data-modal="modal" id="add-hantagace">+</button>
+        <%= image_tag current_user.image, alt: 'user-image', id: 'user-image' %>
+      <% end %>
     </header>
   </div>
   <section class="grid">
     <%= yield %>
   </section>
+  <%= render 'layouts/new_hantagace_form'%>
 </body>
 </html>

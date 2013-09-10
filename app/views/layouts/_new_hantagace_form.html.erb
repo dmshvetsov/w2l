@@ -1,0 +1,165 @@
+<div class="md-modal md-effect" id="modal">
+  <div class="md-content">
+    <h1 class="margin-normal">Hang a tag</h1>
+    <div class="grid" id="hantagace-form">
+      <% if current_user.localities.any? %>
+        <ul class="grid__item one-whole menu">
+          <% current_user.localities.each_with_index do |locality, index| %>
+            <li class="font-large uppercase menu-item"><%= link_to locality.name, "#hantagace-form-#{index+1}" %></li>
+          <% end %>
+        </ul>
+        <% current_user.localities.each_with_index do |locality, index| %>
+          <%= content_tag :div, id: "hantagace-form-#{index+1}" do %> 
+          <div class="grid__item one-whole">
+            <%= form_for locality do |f| %>
+              <div class="margin-normal">
+                <% Tag.all.each do |tag| %>
+                  <% if locality.tag_ids.include?(tag.id) %>
+                    <!-- <%= check_box_tag "locality[tag_ids][]", tag.id, true %> -->
+                    <span class="margin-right-normal"><%= tag.name %></span>
+                  <% end %>
+                <% end %>
+              </div>
+              <%= f.submit "Hantagace", class: "submit-titleize-button" %> <%= link_to "BACK", "#", class: "md-close font-large uppercase margin-left-normal" %>
+            <% end %>
+          </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <div class="grid__item one-whole margin-normal">
+          You haven't check-in, do one.
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="md-overlay"></div>
+
+<script type="text/javascript">
+  /*!
+   * classie - class helper functions
+   * from bonzo https://github.com/ded/bonzo
+   * 
+   * classie.has( elem, 'my-class' ) -> true/false
+   * classie.add( elem, 'my-new-class' )
+   * classie.remove( elem, 'my-unwanted-class' )
+   * classie.toggle( elem, 'my-class' )
+   */
+
+  /*jshint browser: true, strict: true, undef: true */
+  /*global define: false */
+
+  ( function( window ) {
+
+  'use strict';
+
+  // class helper functions from bonzo https://github.com/ded/bonzo
+
+  function classReg( className ) {
+    return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
+  }
+
+  // classList support for class management
+  // altho to be fair, the api sucks because it won't accept multiple classes at once
+  var hasClass, addClass, removeClass;
+
+  if ( 'classList' in document.documentElement ) {
+    hasClass = function( elem, c ) {
+      return elem.classList.contains( c );
+    };
+    addClass = function( elem, c ) {
+      elem.classList.add( c );
+    };
+    removeClass = function( elem, c ) {
+      elem.classList.remove( c );
+    };
+  }
+  else {
+    hasClass = function( elem, c ) {
+      return classReg( c ).test( elem.className );
+    };
+    addClass = function( elem, c ) {
+      if ( !hasClass( elem, c ) ) {
+        elem.className = elem.className + ' ' + c;
+      }
+    };
+    removeClass = function( elem, c ) {
+      elem.className = elem.className.replace( classReg( c ), ' ' );
+    };
+  }
+
+  function toggleClass( elem, c ) {
+    var fn = hasClass( elem, c ) ? removeClass : addClass;
+    fn( elem, c );
+  }
+
+  var classie = {
+    // full names
+    hasClass: hasClass,
+    addClass: addClass,
+    removeClass: removeClass,
+    toggleClass: toggleClass,
+    // short names
+    has: hasClass,
+    add: addClass,
+    remove: removeClass,
+    toggle: toggleClass
+  };
+
+  // transport
+  if ( typeof define === 'function' && define.amd ) {
+    // AMD
+    define( classie );
+  } else {
+    // browser global
+    window.classie = classie;
+  }
+
+  })( window );
+</script>
+
+<script type="text/javascript">
+  var ModalEffects = (function() {
+
+    function init() {
+
+      var overlay = document.querySelector( '.md-overlay' );
+
+      [].slice.call( document.querySelectorAll( '.md-trigger' ) ).forEach( function( el, i ) {
+
+        var modal = document.querySelector( '#' + el.getAttribute( 'data-modal' ) ),
+          close = modal.querySelector( '.md-close' );
+
+        function removeModal( hasPerspective ) {
+          classie.remove( modal, 'md-show' );
+        }
+
+        function removeModalHandler() {
+          removeModal( classie.has( el, 'md-setperspective' ) ); 
+        }
+
+        el.addEventListener( 'click', function( ev ) {
+          classie.add( modal, 'md-show' );
+          overlay.removeEventListener( 'click', removeModalHandler );
+          overlay.addEventListener( 'click', removeModalHandler );
+        });
+
+        close.addEventListener( 'click', function( ev ) {
+          ev.stopPropagation();
+          removeModalHandler();
+        });
+
+      } );
+
+    }
+
+    init();
+
+  })();
+</script>
+
+<script type="text/javascript">
+  $(function(){
+    $("#hantagace-form").tabs();
+  });
+</script>

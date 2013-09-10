@@ -20,6 +20,7 @@ W2lProto::Application.routes.draw do
   #locality controller routes:
   get "localities/index", as: "localities"
   get "locality/:name" => "localities#show", as: "locality"
+  patch "locality/:id" => "localities#hantagace"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
