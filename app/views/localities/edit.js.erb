@@ -1,0 +1,5 @@
+$('#hantagace_form').html('<%= j render "layouts/form" %>');
+
+$('#locality_tag_tokens_<%= @locality.name %>').tokenInput('/tags.json', {
+  prePopulate: $('#locality_tag_tokens_<%= @locality.name %>').data('load')
+});

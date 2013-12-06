@@ -10,6 +10,10 @@ class LocalitiesController < ApplicationController
     @locality = Locality.find_by(name: params[:name])
   end
   
+  def edit
+    @locality = Locality.find(params[:id])
+  end
+  
   def hantagace
     locality = Locality.find(params[:id])
     locality.update_attributes!(hantagace_params)
@@ -19,6 +23,6 @@ class LocalitiesController < ApplicationController
   private
   
   def hantagace_params
-    params.require(:locality).permit(:locality_id, { tag_ids: [] })
+    params.require(:locality).permit(:locality_id, :tag_tokens)
   end
 end

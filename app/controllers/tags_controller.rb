@@ -8,6 +8,11 @@ class TagsController < ApplicationController
     @dislike = Dislike.new
   end
   
+  def tags_json
+    tags = Tag.order(:name)
+    render json: tags.where("name like ?", "%#{params[:q]}%")
+  end
+  
   def like
     @like = Like.new(like_params)
     begin

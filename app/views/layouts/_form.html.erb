@@ -1,0 +1,15 @@
+<div class="grid__item one-whole" id="hantagace_form">
+  <%= form_for @locality, remote: true do |f| %>
+    <div class="margin-normal">
+      <!-- debug data
+      <% Tag.all.each do |tag| %>
+        <% if @locality.tag_ids.include?(tag.id) %>
+          <span class="margin-right-normal"><%= tag.name %></span>
+        <% end %>
+      <% end %>
+            end of debug data -->
+    </div>
+    <%= f.submit "Hantagace", class: "submit-titleize-button" %> <%= link_to "BACK", "#", class: "md-close font-large uppercase margin-left-normal" %>
+    <%= f.text_field :tag_tokens, data: {load: @locality.tags}, id: "locality_tag_tokens_#{@locality.name}" %>
+  <% end %>
+</div>

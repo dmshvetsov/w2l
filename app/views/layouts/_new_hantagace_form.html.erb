@@ -2,34 +2,24 @@
   <div class="md-content">
     <h1 class="margin-normal">Hang a tag</h1>
     <div class="grid" id="hantagace-form">
-      <% if current_user.localities.any? %>
-        <ul class="grid__item one-whole menu">
-          <% current_user.localities.each_with_index do |locality, index| %>
-            <li class="font-large uppercase menu-item"><%= link_to locality.name, "#hantagace-form-#{index+1}" %></li>
-          <% end %>
-        </ul>
-        <% current_user.localities.each_with_index do |locality, index| %>
-          <%= content_tag :div, id: "hantagace-form-#{index+1}" do %> 
-          <div class="grid__item one-whole">
-            <%= form_for locality do |f| %>
-              <div class="margin-normal">
-                <% Tag.all.each do |tag| %>
-                  <% if locality.tag_ids.include?(tag.id) %>
-                    <!-- <%= check_box_tag "locality[tag_ids][]", tag.id, true %> -->
-                    <span class="margin-right-normal"><%= tag.name %></span>
-                  <% end %>
-                <% end %>
-              </div>
-              <%= f.submit "Hantagace", class: "submit-titleize-button" %> <%= link_to "BACK", "#", class: "md-close font-large uppercase margin-left-normal" %>
+      <div class="grid" id="hantagace-form">
+        <% if current_user && current_user.localities.any? %>
+          <ul class="grid__item one-whole menu">
+            <% current_user.localities.each do |locality| %>
+              <li class="font-large uppercase menu-item">
+                <%= link_to locality.name, controller: "localities", action: "edit", id: locality.id, remote: true %>
+              </li>
             <% end %>
+          </ul>
+          <div class="grid__item one-whole" id="hantagace_form">
+            choose locality
           </div>
-          <% end %>
+        <% else %>
+          <div class="grid__item one-whole margin-normal">
+            You haven't check-in, do one.
+          </div>
         <% end %>
-      <% else %>
-        <div class="grid__item one-whole margin-normal">
-          You haven't check-in, do one.
-        </div>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
@@ -156,10 +146,4 @@
     init();
 
   })();
-</script>
-
-<script type="text/javascript">
-  $(function(){
-    $("#hantagace-form").tabs();
-  });
 </script>

@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require csswizardry-grids
+ *= require token-input
  *= require scaffold
  */

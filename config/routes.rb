@@ -12,6 +12,7 @@ W2lProto::Application.routes.draw do
   
   #tags controller routes:
   get "tags/index", as: "tags"
+  get "tags.json" => "tags#tags_json"
   post "liketag" => "tags#like", as: "likes"
   post "disliketag" => "tags#dislike", as: "dislikes"
   delete "like/:id" => "tags#unlike", as: "like"
@@ -20,6 +21,7 @@ W2lProto::Application.routes.draw do
   #locality controller routes:
   get "localities/index", as: "localities"
   get "locality/:name" => "localities#show", as: "locality"
+  get "locality/:id/edit" => "localities#edit"
   patch "locality/:id" => "localities#hantagace"
   
   # The priority is based upon order of creation: first created -> highest priority.
