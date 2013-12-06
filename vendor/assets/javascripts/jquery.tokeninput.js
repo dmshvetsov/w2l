@@ -1,10 +1,9 @@
 /*
- * jQuery Plugin: Tokenizing Autocomplete Text Entry
- * Version 1.6.1
+ * Originaly
+ * jQuery Plugin 1.6.1: Tokenizing Autocomplete Text Entry (Copyright (c) 2009 James Smith http://loopj.com)
  *
- * Copyright (c) 2009 James Smith (http://loopj.com)
- * Licensed jointly under the GPL and MIT licenses,
- * choose which one suits your project best!
+ * Adapted version for W2L project
+ * 2013 Dmitry Shvetsov (aka sdm)
  *
  */
 
@@ -565,7 +564,7 @@ $.TokenList = function (input, url_or_data, settings) {
         input_resizer.html(_escapeHTML(input_val) || _escapeHTML(settings.placeholder));
         // Get maximum width, minimum the size of input and maximum the widget's width
         input_box.width(Math.min(token_list.width(),
-                                 Math.max(width_left, input_resizer.width() + 30)));
+                                 Math.max(width_left, /*input_resizer.width() + 30*/ 400)));
     }
 
     function is_printable_character(keycode) {

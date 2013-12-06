@@ -2,24 +2,22 @@
   <div class="md-content">
     <h1 class="margin-normal">Hang a tag</h1>
     <div class="grid" id="hantagace-form">
-      <div class="grid" id="hantagace-form">
-        <% if current_user && current_user.localities.any? %>
-          <ul class="grid__item one-whole menu">
-            <% current_user.localities.each do |locality| %>
-              <li class="font-large uppercase menu-item">
-                <%= link_to locality.name, controller: "localities", action: "edit", id: locality.id, remote: true %>
-              </li>
-            <% end %>
-          </ul>
-          <div class="grid__item one-whole" id="hantagace_form">
-            choose locality
-          </div>
-        <% else %>
-          <div class="grid__item one-whole margin-normal">
-            You haven't check-in, do one.
-          </div>
-        <% end %>
-      </div>
+      <% if current_user && current_user.localities.any? %>
+        <ul class="grid__item one-whole menu">
+          <% current_user.localities.each do |locality| %>
+            <li class="font-large uppercase menu-item">
+              <%= link_to locality.name, controller: "localities", action: "edit", id: locality.id, remote: true %>
+            </li>
+          <% end %>
+        </ul>
+        <div class="grid__item one-whole" id="hantagace_form">
+          choose locality
+        </div>
+      <% else %>
+        <div class="grid__item one-whole margin-normal">
+          You haven't check-in, do one.
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
